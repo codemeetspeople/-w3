@@ -29,6 +29,16 @@ void merge(int array[], int lo, int mid, int hi) {
     }
 }
 
+void mergeSort(int array[], int lo, int hi) {
+    int middle = (lo + hi) / 2;
+
+    if ( lo < middle ) {
+        mergeSort(array, lo, middle);
+        mergeSort(array, middle, hi);
+        merge(array, lo, middle, hi);
+    }
+}
+
 void arrayPrint(int array[], int size) {
     int last = size - 1;
 
@@ -39,13 +49,11 @@ void arrayPrint(int array[], int size) {
 }
 
 int main() {
-    int array[11] = {3,6,9,12,4,5,11,14,15,16,20};
+    int array[10] = {9,5,10,1,2,4,3,6,8,7};
 
-    arrayPrint(array, 11);
-    merge(array, 0, 4, 11);
-    arrayPrint(array, 11);
-    // 1 2 3 4 5 6 7 8 9 10
-
+    arrayPrint(array, 10);
+    mergeSort(array, 0, 10);
+    arrayPrint(array, 10);
 
     return 0;
 }
