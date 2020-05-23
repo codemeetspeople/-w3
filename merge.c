@@ -1,29 +1,51 @@
 #include <stdio.h>
 
-int main() {
-    int arr1[5] = {1,2,3,4,5};
-    int arr2[5] = {6,7,8,9,10};
+void merge(int array[], int lo, int mid, int hi) {
+    const int size = hi - lo;
+    int buffer[size];
+    int i = lo;
+    int j = mid;
+    int k = 0;
 
-    int i = 0, j = 0;
-
-    for ( ; i < 5 && j < 5; ) {
-        if ( arr1[i] < arr2[j] ) {
-            printf("%d ", arr1[i]);
+    for ( ; i < mid && j < hi; k++ ) {
+        if ( array[i] < array[j] ) {
+            buffer[k] = array[i];
             i += 1;
         } else {
-            printf("%d ", arr2[j]);
+            buffer[k] = array[j];
             j += 1;
         }
     }
 
-    for ( ; i < 5; i++ ) {
-        printf("%d ", arr1[i]);
+    for ( ; i < mid; i++, k++ ) {
+        buffer[k] = array[i];
     }
-    for ( ; j < 5; j++ ) {
-        printf("%d ", arr2[j]);
+    for ( ; j < hi; j++, k++ ) {
+        buffer[k] = array[j];
     }
 
-    printf("\n");
+    for ( i = 0, j = lo; i < size; i++, j++ ) {
+        array[j] = buffer[i];
+    }
+}
+
+void arrayPrint(int array[], int size) {
+    int last = size - 1;
+
+    for ( int i = 0; i < last; i++ ) {
+        printf("%d ", array[i]);
+    }
+    printf("%d\n", array[last]);
+}
+
+int main() {
+    int array[11] = {3,6,9,12,4,5,11,14,15,16,20};
+
+    arrayPrint(array, 11);
+    merge(array, 0, 4, 11);
+    arrayPrint(array, 11);
+    // 1 2 3 4 5 6 7 8 9 10
+
 
     return 0;
 }
