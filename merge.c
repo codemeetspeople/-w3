@@ -15,14 +15,13 @@ int main() {
             j += 1;
         }
     }
-    
+
     for ( ; i < 5; i++ ) {
         printf("%d ", arr1[i]);
     }
     for ( ; j < 5; j++ ) {
         printf("%d ", arr2[j]);
     }
-    
 
     printf("\n");
 
